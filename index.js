@@ -16,15 +16,6 @@ const background = new Sprite({
   imageSrc: './img/background.jpg'
 })
 
-// const shop = new Sprite({
-//   position: {
-//     x: 600,
-//     y: 128
-//   },
-//   imageSrc: './img/shop.png',
-//   scale: 2.75,
-//   framesMax: 6
-// })
 
 const player = new Fighter({
   position: {
@@ -39,9 +30,9 @@ const player = new Fighter({
     x: 0,
     y: 0
   },
-  imageSrc: './img/samuraiMack/Idle.png',
-  framesMax: 8,
-  scale: 3,
+  imageSrc: './img/player1/Idle.png',
+  framesMax: 4,
+  scale: 2.9,
   offset: {
     x: 200,
     y: 150,
@@ -78,10 +69,10 @@ const player = new Fighter({
   },
   attackBox: {
     offset: {
-      x: 100,
+      x: 135,
       y: 50
     },
-    width: 160,
+    width: 135,
     height: 50
   }
 })
@@ -139,10 +130,10 @@ const enemy = new Fighter({
   },
   attackBox: {
     offset: {
-      x: -170,
+      x: -210,
       y: 50
     },
-    width: 170,
+    width: 210,
     height: 50
   }
 })
@@ -171,7 +162,7 @@ function animate() {
   c.fillStyle = 'black'
   c.fillRect(0, 0, canvas.width, canvas.height)
   background.update()
-  // shop.update()
+
   c.fillStyle = 'rgba(255, 255, 255, 0.15)'
   c.fillRect(0, 0, canvas.width, canvas.height)
   player.update()
@@ -224,7 +215,7 @@ function animate() {
       rectangle2: enemy
     }) &&
     player.isAttacking &&
-    player.framesCurrent === 4
+    player.framesCurrent === 3
   ) {
     enemy.takeHit()
     player.isAttacking = false
@@ -235,7 +226,7 @@ function animate() {
   }
 
   // if player misses
-  if (player.isAttacking && player.framesCurrent === 4) {
+  if (player.isAttacking && player.framesCurrent === 3) {
     player.isAttacking = false
   }
 
@@ -284,6 +275,7 @@ window.addEventListener('keydown', (event) => {
         player.velocity.y = -20
         break
       case ' ':
+      case 's':
         player.attack()
         break
     }
